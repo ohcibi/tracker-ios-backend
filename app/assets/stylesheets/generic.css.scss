@@ -1,0 +1,93 @@
+@import "compass/css3/box-shadow";
+$orange: #f7931e;
+$text: #898989;
+$content-width: 960px;
+$map-width: 750px;
+html {
+  background: url(tracks-bg.png);
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 1.5em;
+  cursor: default;
+  font-family: 'Trebuchet MS','Lucida Grande',Verdana,Arial,Sans-Serif;
+  color: $text;
+  text-align: center;
+}
+
+#header {
+  $height: 30px;
+  @include box-shadow(0 0 3px 3px rgba(30, 30, 30, .7));
+  background: $orange;
+  width: 100%;
+  height: $height;
+  text-align: right;
+  margin: 0 0 15px;
+  h1 {
+    margin: 0;
+    padding: 0 0 0 .5em;
+    font-weight: normal;
+    line-height: $height;
+    float: left;
+    font-size: 23px;
+    a {
+      color: #111;
+      text-decoration: none;
+    }
+  }
+  nav {
+    float: right;
+    ul {
+      line-height: $height;
+      overflow: hidden;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    ul li {
+      height: 100%;
+      margin: 0;
+      padding: 0 10px;
+      float: left;
+      text-align: center;
+    }
+    ul a {
+      height: 100%;
+      display: block;
+      color: #fff;
+      text-decoration: none;
+    }
+    ul a:hover {
+      color: #223e52;
+    }
+  }
+}
+
+#content {
+  margin: 1em auto 0;
+  text-align: left;
+  width: $content-width;
+  overflow: hidden;
+}
+
+#tracks {
+  width: $content-width - $map-width;
+  float: left;
+}
+
+#googlemap {
+  width: $map-width;
+  height: $map-width;
+  float: left;
+}
+
+footer {
+  float: none;
+  clear: both;
+  margin-top: 1em;
+  font-size: .9em;
+}
