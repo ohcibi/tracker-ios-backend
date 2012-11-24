@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 gem 'haml-rails'
+gem 'devise'
 
 
 # Bundle edge Rails instead:
