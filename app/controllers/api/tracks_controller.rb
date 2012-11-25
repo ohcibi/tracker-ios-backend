@@ -3,12 +3,17 @@ class Api::TracksController < ApplicationController
   before_filter :authenticate
 
   def create
-    render json: { success: true }
+    @track = current_user.tracks.create
+    render json: { success: true, track_id: @track.id }
   end
 
   private
     def authenticate
-      return if user_signed_in?
-      render json: { success: false, message: "Not signed in" }, status: 401
+      user = User.find_for_token_authentication auth_token: params[:auth_token]
+      if user
+        sign_in user
+      else
+        render json: { success: false, message: "Not signed in" }, status: 401
+      end
     end
 end
