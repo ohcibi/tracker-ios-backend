@@ -18,6 +18,6 @@ class Api::SessionsController < Devise::SessionsController
       invalid_login "Wrong Password"
     end
     def invalid_login message
-      render json: { success: false, message: message }, status: 401
+      invalid_access message, 401
     end
 end
