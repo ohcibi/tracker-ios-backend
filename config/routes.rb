@@ -1,4 +1,10 @@
 Tracker::Application.routes.draw do
+  devise_for :users
+  devise_scope :user do
+    namespace :api do
+      resource :sessions, only: [:create]
+    end
+  end
   root to: 'tracks#index'
 
   # The priority is based upon order of creation:
