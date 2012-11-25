@@ -36,6 +36,7 @@ group :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'guard-spork'
+  gem 'capybara'
   gem 'rb-inotify'
   gem 'factory_girl_rails'
 end
