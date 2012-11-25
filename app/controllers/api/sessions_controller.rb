@@ -1,4 +1,5 @@
 class Api::SessionsController < Devise::SessionsController
+  include ApplicationHelper
   prepend_before_filter :require_no_authentication, only: [:create]
   respond_to :json
 
