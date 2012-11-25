@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   before_save :reset_authentication_token
+  has_many :tracks
 end

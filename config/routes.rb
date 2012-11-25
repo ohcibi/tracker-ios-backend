@@ -5,6 +5,9 @@ Tracker::Application.routes.draw do
       resource :sessions, only: [:create]
     end
   end
+  namespace :api do
+    resource :tracks
+  end
   root to: 'tracks#index'
 
   # The priority is based upon order of creation:

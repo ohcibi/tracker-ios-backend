@@ -32,6 +32,14 @@ group :development do
   gem 'pry-rails'
 end
 
+group :test do
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'rb-inotify'
+  gem 'factory_girl_rails'
+end
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
