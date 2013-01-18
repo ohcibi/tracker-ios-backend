@@ -8,7 +8,7 @@ gem 'devise'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'mysql2'
 
 
 # Gems used only for assets and not required
@@ -26,19 +26,16 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
+group :development, :test do
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-rails'
-end
-
-group :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'guard-spork'
-  gem 'capybara'
   gem 'rb-inotify'
   gem 'factory_girl_rails'
+  gem 'capybara'
 end
 
 gem 'jquery-rails'
