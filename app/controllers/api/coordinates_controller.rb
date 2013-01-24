@@ -1,4 +1,5 @@
 class Api::CoordinatesController < Api::BaseController
+  before_filter :authenticate_with_auth_token
   def create
     @track = Track.find_by_id params[:track_id]
     return wrong_track_id unless @track

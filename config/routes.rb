@@ -9,6 +9,8 @@ Tracker::Application.routes.draw do
     resources :tracks do
       resources :coordinates, only: [:create]
     end
+
+    resources :users
   end
   root to: 'tracks#index'
 
