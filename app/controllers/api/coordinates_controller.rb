@@ -1,5 +1,14 @@
 class Api::CoordinatesController < Api::BaseController
-  before_filter :authenticate_with_auth_token
+  skip_before_filter :authenticate_with_auth_token, only: :index
+
+  def index
+    track = Track.find params[:track_id]
+    @coordinates = track.coordinates
+    respond_with @coordinates do |format|
+      format.json { render json: @coordinates.to_json(only: [:lat, :lng]) }
+    end
+  end
+
   def create
     @track = Track.find_by_id params[:track_id]
     return wrong_track_id unless @track

@@ -8,7 +8,7 @@ class Api::SessionsController < Devise::SessionsController
     return invalid_email unless @user
     return invalid_password unless @user.valid_password? params[:password]
     sign_in "user", @user
-    render json: {success: true, auth_token: @user.authentication_token}
+    render json: { success: true, user: @user.to_json(only: [:id, :name, :email, :authentication_token]) }
   end
 
   private
