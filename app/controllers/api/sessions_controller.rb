@@ -13,10 +13,10 @@ class Api::SessionsController < Devise::SessionsController
 
   private
     def invalid_email
-      invalid_login "Wrong E-Mail Address"
+      invalid_login "Falsche E-Mail Adresse"
     end
     def invalid_password
-      invalid_login "Wrong Password"
+      invalid_login "Falsches Passwort"
     end
     def invalid_login message
       invalid_access message, 401

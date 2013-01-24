@@ -9,7 +9,7 @@ describe Api::SessionsController do
       it "should be not successful" do
         response.should_not be_success
         JSON.parse(response.body)["success"].should be_false
-        JSON.parse(response.body)["message"].should == "Wrong E-Mail Address"
+        JSON.parse(response.body)["message"].should == "Falsche E-Mail Adresse"
       end
     end
 
@@ -18,7 +18,7 @@ describe Api::SessionsController do
       it "should be not successful" do
         response.should_not be_success
         JSON.parse(response.body)["success"].should be_false
-        JSON.parse(response.body)["message"].should == "Wrong Password"
+        JSON.parse(response.body)["message"].should == "Falsches Passwort"
       end
     end
 
