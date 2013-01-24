@@ -33,7 +33,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'guard-spork'
-  gem 'rb-inotify'
+  gem 'rb-inotify', '~> 0.8.8'
   gem 'factory_girl_rails'
   gem 'capybara'
 end
