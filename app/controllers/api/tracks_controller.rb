@@ -12,4 +12,14 @@ class Api::TracksController < Api::BaseController
     @track = current_user.tracks.create
     render json: { success: true, track_id: @track.id }
   end
+
+  def destroy
+    @track = Track.find params[:id]
+    unless @track.user == current_user
+      invalid_access "Not your Track!", 401
+      return
+    end
+    @track.destroy
+    render json: { success: true }
+  end
 end

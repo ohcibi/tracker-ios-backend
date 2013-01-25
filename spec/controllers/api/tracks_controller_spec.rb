@@ -2,7 +2,7 @@ require 'spec_helper'
 
 shared_examples_for "accessed from anonymous users" do
   it "should denial access" do
-    JSON.parse(response.body).should == {"success" => false, "message" => "Not signed in"}
+    expect(JSON.parse(response.body)["success"]).to be_false
     response.response_code.should == 401
   end
 end
@@ -11,6 +11,15 @@ describe Api::TracksController do
   context "with anonymous user" do
     describe "create track" do
       before { post :create, format: :json }
+      it_should_behave_like "accessed from anonymous users"
+    end
+    describe "delete track" do
+      let(:user) { FactoryGirl.create :user }
+      let(:track) do
+        tracks = user.tracks << FactoryGirl.create(:track)
+        tracks.first
+      end
+      before { delete :destroy, format: :json, id: track }
       it_should_behave_like "accessed from anonymous users"
     end
   end
@@ -25,6 +34,27 @@ describe Api::TracksController do
           JSON.parse(response.body)["success"].should == true
           JSON.parse(response.body)["track_id"].should be_an Integer
         end.to change(Track, :count).by 1
+      end
+    end
+
+    describe "delete track" do
+      let!(:track) do
+        tracks = user.tracks << FactoryGirl.create(:track)
+        tracks.first
+      end
+
+      it "should be successful" do
+        expect do
+          delete :destroy, format: :json, id: track, auth_token: auth_token
+          expect(Track.find_by_id track.id).to be_nil
+        end.to change(Track, :count).by -1
+      end
+
+      context "as wrong user" do
+        let(:other_user) { FactoryGirl.create :user }
+
+        before { delete :destroy, format: :json, id: track, auth_token: other_user.authentication_token }
+        it_should_behave_like "accessed from anonymous users"
       end
     end
   end
