@@ -22,6 +22,12 @@ describe Api::TracksController do
       before { delete :destroy, format: :json, id: track }
       it_should_behave_like "accessed from anonymous users"
     end
+
+    describe "PUT 'finish'" do
+      let(:track) { FactoryGirl.create :track }
+      before { put :finish, format: :json, id: track }
+      it_should_behave_like "accessed from anonymous users"
+    end
   end
 
   context "with signed in user" do
@@ -54,6 +60,24 @@ describe Api::TracksController do
         let(:other_user) { FactoryGirl.create :user }
 
         before { delete :destroy, format: :json, id: track, auth_token: other_user.authentication_token }
+        it_should_behave_like "accessed from anonymous users"
+      end
+    end
+
+    describe "PUT 'finish'" do
+      let(:track) { FactoryGirl.create :track, user: user }
+
+      it "sets the finish attribute of the track to true" do
+        expect do
+          put :finish, format: :json, id: track, auth_token: user.authentication_token
+          track.reload
+        end.to change(track, :finished).from(false).to(true)
+      end
+
+      context "as wrong user" do
+        let(:other_user) { FactoryGirl.create :user }
+
+        before { put :finish, format: :json, id: track, auth_token: other_user.authentication_token }
         it_should_behave_like "accessed from anonymous users"
       end
     end

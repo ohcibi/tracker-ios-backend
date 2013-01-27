@@ -35,7 +35,7 @@ describe Api::CoordinatesController do
     it "should return all coordinates for a track" do
       10.times { track.coordinates << FactoryGirl.create(:coordinate) }
       get :index, track_id: track.id, format: :json
-      expect(response.body).to eql track.coordinates.to_json only: [:lat, :lng]
+      expect(response.body).to eql track.coordinates.to_json only: [:id, :lat, :lng]
     end
   end
 end

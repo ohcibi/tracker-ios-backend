@@ -7,6 +7,7 @@ Tracker::Application.routes.draw do
   end
   namespace :api do
     resources :tracks do
+      put :finish, on: :member
       resources :coordinates, only: [:create, :index]
     end
 

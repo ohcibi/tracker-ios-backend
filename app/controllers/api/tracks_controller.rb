@@ -22,4 +22,17 @@ class Api::TracksController < Api::BaseController
     @track.destroy
     render json: { success: true }
   end
+
+  def finish
+    @track = Track.find params[:id]
+    unless @track.user == current_user
+      invalid_access "Not your Track!", 401
+      return
+    end
+    if @track.finish!
+      render json: { success: true }
+    else
+      render json: { success: false }
+    end
+  end
 end

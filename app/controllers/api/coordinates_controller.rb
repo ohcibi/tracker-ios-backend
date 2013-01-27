@@ -5,7 +5,7 @@ class Api::CoordinatesController < Api::BaseController
     track = Track.find params[:track_id]
     @coordinates = track.coordinates
     respond_with @coordinates do |format|
-      format.json { render json: @coordinates.to_json(only: [:lat, :lng]) }
+      format.json { render json: @coordinates.to_json(only: [:id, :lat, :lng]) }
     end
   end
 

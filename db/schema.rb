@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124193720) do
+ActiveRecord::Schema.define(:version => 20130127133836) do
 
   create_table "coordinates", :force => true do |t|
     t.float    "lat"
@@ -25,8 +25,9 @@ ActiveRecord::Schema.define(:version => 20130124193720) do
 
   create_table "tracks", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "finished",   :default => false
   end
 
   add_index "tracks", ["user_id"], :name => "index_tracks_on_user_id"
