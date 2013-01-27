@@ -89,7 +89,7 @@ describe Api::TracksController do
     it "should return all the tracks of the user" do
       5.times { user.tracks << FactoryGirl.create(:track) }
       get :index, user_id: user.id, format: :json
-      expect(response.body).to eql user.tracks.to_json only: [:id, :created_at]
+      expect(response.body).to eql user.tracks.to_json only: [:id, :finished, :created_at]
     end
   end
 end

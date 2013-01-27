@@ -4,7 +4,7 @@ class Api::TracksController < Api::BaseController
     user = User.find params[:user_id]
     @tracks = user.tracks
     respond_with @tracks do |format|
-      format.json { render json: @tracks.to_json(only: [:id, :created_at]) }
+      format.json { render json: @tracks.to_json(only: [:id, :finished, :created_at]) }
     end
   end
 
