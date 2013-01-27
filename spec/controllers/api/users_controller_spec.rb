@@ -32,7 +32,7 @@ describe Api::UsersController do
   describe "GET index" do
     it "return a list of all users along with the number of their tracks" do
       get :index, format: :json
-      expect(response.body).to eql users.to_json only: [:id, :name], methods: :tracks_count
+      expect(response.body).to eql users.to_json only: [:id, :name], methods: [:md5email, :tracks_count]
     end
   end
 end

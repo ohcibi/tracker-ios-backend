@@ -27,7 +27,7 @@ describe Api::SessionsController do
       it "should be successful" do
         response.should be_success
         JSON.parse(response.body)["success"].should be_true
-        expect(JSON.parse(response.body)["user"]).to eql user.to_json only: [:id, :name, :email, :authentication_token]
+        expect(JSON.parse(response.body)["user"]).to eql user.to_json only: [:id, :name, :email, :authentication_token], methods: [:md5email]
       end
     end
   end

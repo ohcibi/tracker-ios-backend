@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
   def tracks_count
     tracks.count
   end
+
+  def md5email
+    Digest::MD5.hexdigest email
+  end
 end

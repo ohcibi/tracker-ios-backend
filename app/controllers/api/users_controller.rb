@@ -3,7 +3,7 @@ class Api::UsersController  < Api::BaseController
   def index
     @users = User.all
     respond_with @users do |format|
-      format.json { render json: @users.to_json(only: [:id, :name], methods: :tracks_count) }
+      format.json { render json: @users.to_json(only: [:id, :name], methods: [:md5email, :tracks_count]) }
     end
   end
 end
