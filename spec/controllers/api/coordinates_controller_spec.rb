@@ -38,4 +38,13 @@ describe Api::CoordinatesController do
       expect(response.body).to eql track.coordinates.to_json only: [:id, :lat, :lng]
     end
   end
+
+  describe "GET 'last'" do
+    let(:track) { FactoryGirl.create :track }
+    it "should return the last coordinate of a track" do
+      10.times { track.coordinates << FactoryGirl.create(:coordinate) }
+      get :last, track_id: track, format: :json
+      expect(response.body).to eql track.coordinates.last.to_json only: [:id, :lat, :lng]
+    end
+  end
 end
