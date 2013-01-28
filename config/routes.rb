@@ -14,8 +14,10 @@ Tracker::Application.routes.draw do
     end
 
     resources :users do
+      get :buddies, on: :member
       resources :tracks, only: [:index]
     end
+    resources :friendships
   end
   root to: 'tracks#index'
 

@@ -1,16 +1,16 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :token_authenticatable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
-  # attr_accessible :title, :body
 
-  before_save :reset_authentication_token
+  before_save :ensure_authentication_token
   has_many :tracks
+
+  has_many :friendships
+  has_many :buddies, through: :friendships
+
+  default_scope order 'last_seen DESC'
 
   def tracks_count
     tracks.count
@@ -18,5 +18,9 @@ class User < ActiveRecord::Base
 
   def md5email
     Digest::MD5.hexdigest email
+  end
+
+  def online?
+    (last_seen.to_i - (Time.now - 5.minutes).to_i) > 0
   end
 end

@@ -12,4 +12,12 @@ module ApplicationHelper
       render json: { success: false, message: "Not signed in" }, status: 401
     end
   end
+
+  def update_last_seen
+    user = User.find_by_authentication_token params[:auth_token]
+    if user
+      user.last_seen = DateTime.now
+      user.save
+    end
+  end
 end
