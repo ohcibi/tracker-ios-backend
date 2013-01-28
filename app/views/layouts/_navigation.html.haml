@@ -1,9 +1,9 @@
-%nav
+%nav{data: {role: "navbar"}}
   %ul
-    %li= link_to "Tracks", root_path
-    %li= link_to "About", '#'
+    %li= link_to "Map", root_path
+    %li= link_to "Tracks", "http://www.google.de"
+    %li= link_to "Users", "#"
     - if user_signed_in?
       %li= link_to "Sign Out", destroy_user_session_path, method: :delete
     - else
       %li= link_to "Sign In", new_user_session_path
-

@@ -7,6 +7,7 @@ module ApplicationHelper
     user = User.find_for_token_authentication auth_token: params[:auth_token]
     if user
       sign_in user
+      session[:auth_token] = user.authentication_token
     else
       render json: { success: false, message: "Not signed in" }, status: 401
     end

@@ -9,5 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require generic
+ *= require jquery.mobile
+ * require generic
  */

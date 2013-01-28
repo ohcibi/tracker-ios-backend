@@ -1,6 +1,7 @@
 jQuery ($) ->
-  console.dir $ '#googlemap'
-  map = new google.maps.Map document.getElementById('googlemap'),
+  mapEl = $ '#googlemap'
+  mapEl.height mapEl.width()
+  map = new google.maps.Map mapEl[0],
     zoom: 16
     navigationControl: true
     navigationControlOptions:
